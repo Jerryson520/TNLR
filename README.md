@@ -110,7 +110,7 @@ MNLI-mm: 91.456
 
 ### MNLI (large)
 #### 1. Single GPU
-```shell
+ ```shell
  # Set path to read training/dev dataset that was downloaded in the previous step
 export DATASET_PATH=${HOME_DIR}/glue_data/MNLI
 
@@ -161,7 +161,7 @@ MNLI-mm: 91.456
 
 
 #### 2. Multiple GPUs
-```shell
+ ```shell
 # Set path to read training/dev dataset that was downloaded in the previous step
 export DATASET_PATH=${HOME_DIR}/glue_data/MNLI
 
@@ -329,7 +329,4 @@ See [LICENSE.txt](./LICENSE.txt).
 See [SECURITY.md](./SECURITY.md). 
 
 ## Support 
-Please email us at turing-academic@microsoft.com for troubleshooting, or file an issue through the repo 
-
-
-
+Please email us at turing-academic@microsoft.com for troubleshooting, or file an issue through the repo
