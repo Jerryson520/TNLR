@@ -182,7 +182,7 @@ export TRAIN_CACHE=${DATASET_PATH}/$TASK_NAME.tnlrv5_large_cased.$MAX_LEN.cache
 export DEV_CACHE=${DATASET_PATH}/$TASK_NAME.tnlrv5_large_cased.$MAX_LEN.cache
 
 # Setting the hyperparameters for the run.
-export BSZ=32
+export BSZ=16 # CUDA out of memory if batch size is too large 
 export LR=3e-6
 export EPOCH=2
 export WD=0.1
@@ -204,8 +204,8 @@ CUDA_VISIBLE_DEVICES=0 python src/run_classifier.py \
 `--seed`: 1
 
  ```
-MNLI-m: 不太清楚需不需要这个model需不需要分成single GPUs 和 multiple GPUs
-MNLI-mm: 
+MNLI-m: 0.915
+MNLI-mm: 0.916
 ```
 
 
@@ -253,13 +253,20 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_
 
  #### Sample results (Acc):
 
+`--seed`: 1
+
+ ```
+MNLI-m: 0.915
+MNLI-mm: 0.915
+```
+
 
 ## **SQuAD 2.0 Fine-tuning (Base & Large)**
 [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable. 
 
 
 ### 1. Single GPU
- ```shell
+```shell
 # Set path for this repository
 export HOME_DIR=~/mstap-TNLR-harvard-cai-lu
 cd ${HOME_DIR}
@@ -304,7 +311,7 @@ CUDA_VISIBLE_DEVICES=0 python src/run_squad.py \
     --weight_decay 0.1 --warmup_ratio 0.0625 \
     --fp16_init_loss_scale 128.0 --adam_epsilon 1e-6 --adam_betas "0.9,0.98" \
     --fp16_opt_level O2 --fp16
-```
+ ```
 `--seed`: 1
 
 ```
@@ -359,8 +366,12 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_
     --weight_decay 0.1 --warmup_ratio 0.0625 \
     --fp16_init_loss_scale 128.0 --adam_epsilon 1e-6 --adam_betas "0.9,0.98" \
     --fp16_opt_level O2 --fp16
- ```
+```
+`--seed`: 1
 
+```
+F1_score: 88.407
+```
 
 ## Papers
 * [COCO-LM: Correcting and Contrasting Text Sequences for Language Model Pretraining](https://arxiv.org/abs/2102.08473)
