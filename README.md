@@ -204,8 +204,8 @@ CUDA_VISIBLE_DEVICES=0 python src/run_classifier.py \
 `--seed`: 1
 
  ```
-MNLI-m: 0.915
-MNLI-mm: 0.916
+MNLI-m: 91.544
+MNLI-mm: 91.589
 ```
 
 
@@ -256,8 +256,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_
 `--seed`: 1
 
  ```
-MNLI-m: 0.915
-MNLI-mm: 0.915
+MNLI-m: 91.544
+MNLI-mm: 91.507
 ```
 
 
